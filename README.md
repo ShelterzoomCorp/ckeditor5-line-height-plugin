@@ -7,17 +7,17 @@ Plugin for CKEditor5 to create button to change the line height of the selected 
 First, install the build from npm:
 
 ```bash
-npm install --save ckeditor5-line-height-plugin
+npm install --save @ShelterzoomCorp/ckeditor5-line-height-plugin
 ```
 or using yarn:
 ```bash
-yarn add ckeditor5-line-height-plugin
+yarn add @ShelterzoomCorp/ckeditor5-line-height-plugin
 ```
 
 Use it in your application:
 
 ```js
-import LineHeight from 'ckeditor5-line-height-plugin/src/lineheight';
+import LineHeight from '@ShelterzoomCorp/ckeditor5-line-height-plugin/src/lineheight';
 ```
 #### ***Some users had prblems with styling. In this case try importing this plugin as your first import.***
 Add it to your editor:
