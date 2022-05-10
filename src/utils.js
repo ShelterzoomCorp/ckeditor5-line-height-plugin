@@ -1,12 +1,10 @@
-import Plugin from '@ckeditor/ckeditor5-core/src/plugin'
-
 export function isSupported( option ) {
 	// return supportedOptions.includes( option );
-	return /^\d(.\d+)?$/mg.test(String(option))
+	return /^\d(.\d+)?$/mg.test( String( option ) );
 }
 
-export function normalizeOptions(configuredOptions) {
-	return configuredOptions.map(optionDefinition).filter(option => !!option);
+export function normalizeOptions( configuredOptions ) {
+	return configuredOptions.map( optionDefinition ).filter( option => !!option );
 }
 
 export function buildDefinition( options ) {
@@ -30,30 +28,29 @@ export function buildDefinition( options ) {
 	return definition;
 }
 
-
 function optionDefinition( option ) {
-	if (typeof option === 'object') {
-		return option
+	if ( typeof option === 'object' ) {
+		return option;
 	}
 
-	if (option === 'default') {
+	if ( option === 'default' ) {
 		return {
 			model: undefined,
 			title: 'Default'
 		};
 	}
 
-	const sizePreset = parseFloat(option)
+	const sizePreset = parseFloat( option );
 
-	if (isNaN(sizePreset)) {
-		return
+	if ( isNaN( sizePreset ) ) {
+		return;
 	}
 
-	return generatePixelPreset(sizePreset)
+	return generatePixelPreset( sizePreset );
 }
 
-function generatePixelPreset(size) {
-	const sizeName = String(size)
+function generatePixelPreset( size ) {
+	const sizeName = String( size );
 
 	return {
 		title: sizeName,
@@ -65,5 +62,5 @@ function generatePixelPreset(size) {
 			},
 			priority: 5
 		}
-	}
+	};
 }

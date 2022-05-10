@@ -1,46 +1,101 @@
 {
-  "name": "ckeditor5-line-height-plugin",
-  "version": "0.1.5",
-  "description": "Plugin for CKEditor5 to create button to change the line height of the selected block.",
-  "main": "src/lineheight.js",
-  "dependencies": {
-    "@ckeditor/ckeditor5-core": "^29.2.0",
-    "@ckeditor/ckeditor5-ui": "^29.2.0",
-    "@ckeditor/ckeditor5-utils": "^29.2.0"
-  },
-  "devDependencies": {
-    "eslint": "^6.0.1",
-    "eslint-config-ckeditor5": "^1.0.7",
-    "husky": "^0.14.3",
-    "lint-staged": "^7.0.0"
-  },
-  "engines": {
-    "node": ">=6.9.0",
-    "yarn": ">=1.12.0"
-  },
+  "name": "@ShelterzoomCorp/ckeditor5-line-height-plugin",
+  "version": "0.2.0",
+  "description": "Line height plugin for CKEditor 5.",
+  "main": "src/index.js",
   "author": "p0thi",
   "license": "GPL-2.0-or-later",
   "homepage": "https://github.com/p0thi/ckeditor5-line-height-plugin",
-  "bugs": "https://github.com/p0thi/ckeditor5-line-height-plugin/issues",
+  "dependencies": {
+    "@ckeditor/ckeditor5-core": ">=34.0.0",
+    "@ckeditor/ckeditor5-ui": "^34.0.0",
+    "@ckeditor/ckeditor5-utils": "^34.0.0"
+  },
+  "devDependencies": {
+    "@ckeditor/ckeditor5-autoformat": ">=34.0.0",
+    "@ckeditor/ckeditor5-basic-styles": ">=34.0.0",
+    "@ckeditor/ckeditor5-block-quote": ">=34.0.0",
+    "@ckeditor/ckeditor5-code-block": ">=34.0.0",
+    "@ckeditor/ckeditor5-editor-classic": ">=34.0.0",
+    "@ckeditor/ckeditor5-essentials": ">=34.0.0",
+    "@ckeditor/ckeditor5-heading": ">=34.0.0",
+    "@ckeditor/ckeditor5-image": ">=34.0.0",
+    "@ckeditor/ckeditor5-indent": ">=34.0.0",
+    "@ckeditor/ckeditor5-inspector": ">=4.0.0",
+    "@ckeditor/ckeditor5-link": ">=34.0.0",
+    "@ckeditor/ckeditor5-list": ">=34.0.0",
+    "@ckeditor/ckeditor5-media-embed": ">=34.0.0",
+    "@ckeditor/ckeditor5-package-tools": "^1.0.0-beta.5",
+    "@ckeditor/ckeditor5-paragraph": ">=34.0.0",
+    "@ckeditor/ckeditor5-restricted-editing": "^34.0.0",
+    "@ckeditor/ckeditor5-table": ">=34.0.0",
+    "@ckeditor/ckeditor5-theme-lark": ">=34.0.0",
+    "@ckeditor/ckeditor5-upload": ">=34.0.0",
+    "@types/chai": "^4.3.1",
+    "@types/ckeditor__ckeditor5-autoformat": "^31.0.0",
+    "@types/ckeditor__ckeditor5-basic-styles": "^28.0.2",
+    "@types/ckeditor__ckeditor5-block-quote": "^29.0.4",
+    "@types/ckeditor__ckeditor5-core": "^33.0.2",
+    "@types/ckeditor__ckeditor5-editor-classic": "^27.1.2",
+    "@types/ckeditor__ckeditor5-essentials": "^28.0.3",
+    "@types/ckeditor__ckeditor5-list": "^32.0.1",
+    "@types/ckeditor__ckeditor5-paragraph": "^27.0.5",
+    "@types/ckeditor__ckeditor5-special-characters": "^29.0.2",
+    "@types/karma": "^6.3.3",
+    "@types/lodash": "^4.14.182",
+    "@types/mocha": "^9.1.1",
+    "@types/sinon": "^10.0.11",
+    "chai": "^4.3.6",
+    "eslint": "^7.32.0",
+    "eslint-config-ckeditor5": ">=4.0.0",
+    "http-server": "^14.1.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.6",
+    "node-polyfill-webpack-plugin": "^1.1.4",
+    "stylelint": "^13.13.1",
+    "stylelint-config-ckeditor5": ">=4.0.0",
+    "util": "^0.12.4"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=5.7.1"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/p0thi/ckeditor5-line-height-plugin.git"
+    "url": "git+https://github.com/ShelterzoomCorp/ckeditor5-line-height-plugin.git"
   },
   "files": [
     "lang",
-    "src"
+    "src",
+    "build",
+    "ckeditor5-metadata.json"
   ],
   "scripts": {
-    "lint": "eslint",
-    "precommit": "lint-staged"
+    "dll:build": "ckeditor5-package-tools dll:build",
+    "dll:serve": "http-server ./ -o sample/dll.html",
+    "lint": "eslint \"**/*.js\" --quiet --ignore-pattern \"build/\"",
+    "start": "ckeditor5-package-tools start",
+    "stylelint": "stylelint --quiet --allow-empty-input 'theme/**/*.css'",
+    "prepare": "yarn run dll:build",
+    "prepublishOnly": "yarn run dll:build",
+    "translations:collect": "ckeditor5-package-tools translations:collect",
+    "translations:download": "ckeditor5-package-tools translations:download",
+    "translations:upload": "ckeditor5-package-tools translations:upload"
   },
   "lint-staged": {
     "**/*.js": [
       "eslint --quiet"
+    ],
+    "**/*.css": [
+      "stylelint --quiet --allow-empty-input"
     ]
   },
-  "eslintIgnore": [
-    "src/lib/**",
-    "packages/**"
-  ]
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
 }

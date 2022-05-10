@@ -1,0 +1,16 @@
+{
+	"plugins": [
+		{
+			"name": "LineHeight",
+			"className": "LineHeight",
+			"description": "Adds line height to the editor.",
+			"path": "src/lineheight.js",
+			"uiComponents": [
+				{
+					"name": "LineHeight",
+					"type": "Button"
+				}
+			]
+		}
+	]
+}
